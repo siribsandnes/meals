@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meals/providers/filters_provider.dart';
+import 'package:meals/screens/addMeal.dart';
 import 'package:meals/screens/categories.dart';
 import 'package:meals/screens/filters.dart';
 import 'package:meals/screens/meals.dart';
@@ -59,6 +60,12 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
       activePage = MealsScreen(
         meals: favoriteMeals,
       );
+    }
+
+    if (_selectedPageIndex == 2) {
+      //Make sure new page is loaded here
+      activePageTitle = 'Add meal';
+      activePage = AddMealScreen();
     }
 
     return Scaffold(
