@@ -1,27 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:meals/models/meal.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meals/providers/favorites_provider.dart';
 
-class MealDetails extends StatelessWidget {
+class MealDetails extends ConsumerWidget {
   const MealDetails({
     super.key,
     required this.meal,
-    required this.onToggleFavorite,
   });
 
   final Meal meal;
-  final Function(Meal meal) onToggleFavorite;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final favoriteMeals =
+        ref.watch(favoritesProvider); //returns a list of favorite meals
+    final isFavorite = favoriteMeals
+        .contains(meal); //Checks if the meal is registered as a favorite meal
+
     return Scaffold(
       appBar: AppBar(
         title: Text(meal.title),
         actions: [
           IconButton(
-              onPressed: () {
-                onToggleFavorite(meal);
-              },
-              icon: const Icon(Icons.favorite))
+            onPressed: () {
+              final wasAdded = ref
+                  .read(favoritesProvider.notifier)
+                  .toggleMealFavoriteStatus(meal);
+              ScaffoldMessenger.of(context).clearSnackBars();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(wasAdded
+                      ? 'Meal added as a favorite'
+                      : 'Meal removed'), //Uses turnary expression
+                ),
+              ); //Should not set up a listener inside a function here. Should only be read once when called.
+            },
+            icon: Icon(isFavorite
+                ? Icons.favorite
+                : Icons
+                    .favorite_border), //Different icon based on if the meal is a favorite or not
+          ),
         ],
       ),
       body: SingleChildScrollView(

@@ -8,11 +8,9 @@ import 'package:meals/widgets/category_grid_item.dart';
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({
     super.key,
-    required this.onToggleFavorite,
     required this.availableMeals,
   });
 
-  final Function(Meal meal) onToggleFavorite;
   final List<Meal> availableMeals;
 
 //
@@ -28,7 +26,6 @@ class CategoriesScreen extends StatelessWidget {
           builder: (context) => MealsScreen(
             title: category.title,
             meals: filteredMeals,
-            onToggleFavorite: onToggleFavorite,
           ),
         )); //Pushes the "route widget" as the top layer and makes it visible.
   }
