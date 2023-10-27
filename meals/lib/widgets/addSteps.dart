@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:flutter/cupertino.dart';
 
 class AddSteps extends StatefulWidget {
@@ -27,7 +27,6 @@ class _AddIngredientsState extends State<AddSteps> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       widget.saveSteps(_listOfSteps);
-      print(_listOfSteps);
       return true;
     } else {
       return false;
@@ -100,7 +99,7 @@ class _AddIngredientsState extends State<AddSteps> {
           width: double.infinity,
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(20, 30, 20, 30),
+              padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
               child: Column(
                 children: [
                   const Text(
@@ -169,7 +168,7 @@ class _AddIngredientsState extends State<AddSteps> {
                               Navigator.pop(context);
                             }
                           },
-                          child: Text('Add steps'),
+                          child: const Text('Add steps'),
                         )
                       : const SizedBox(),
                 ],

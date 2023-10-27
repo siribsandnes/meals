@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 
 class AddIngredients extends StatefulWidget {
@@ -168,7 +167,7 @@ class _AddIngredientsState extends State<AddIngredients> {
                             Navigator.pop(context);
                           }
                         },
-                        child: Text('Add ingredients'),
+                        child: const Text('Add ingredients'),
                       )
                     : const SizedBox(),
               ],
