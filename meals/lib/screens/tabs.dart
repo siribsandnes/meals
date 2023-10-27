@@ -65,7 +65,11 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
     if (_selectedPageIndex == 2) {
       //Make sure new page is loaded here
       activePageTitle = 'Add meal';
-      activePage = AddMealScreen();
+      setState(() {
+        activePage = AddMealScreen(
+          availableMeals: theAvailableMeals,
+        );
+      });
     }
 
     return Scaffold(
@@ -86,7 +90,7 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
             label: 'Categories',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.star),
+            icon: Icon(Icons.favorite),
             label: 'Favorites',
           ),
           BottomNavigationBarItem(

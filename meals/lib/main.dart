@@ -10,7 +10,13 @@ final theme = ThemeData(
     brightness: Brightness.dark,
     seedColor: const Color.fromARGB(255, 131, 57, 0),
   ),
-  textTheme: GoogleFonts.latoTextTheme(),
+  textTheme: GoogleFonts.latoTextTheme(
+    TextTheme(
+      subtitle1: const TextStyle(
+        color: Colors.red, // <-- TextFormField input color
+      ),
+    ),
+  ),
 );
 
 void main() {
